@@ -76,6 +76,10 @@ namespace StellarisModSelector
         public void CreateObjects(string json)
         {
             Packs = JsonConvert.DeserializeObject<List<ModPack>>(json);
+            if(Packs == null)
+            {
+                Packs = new List<ModPack>();
+            }
         }
 
 
@@ -86,7 +90,10 @@ namespace StellarisModSelector
 
         public string ReadJson(string fullFilePath)
         {
+            if (File.Exists(fullFilePath)) { 
             return File.ReadAllText(fullFilePath);
+            }
+            return "";
         }
     }
 }
